@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Loan Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="authPage">
+            <div class="auth-container">
+                <h1>Welcome to Loan Management</h1>
+                <div id="loginForm">
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button onclick="login()">Login</button>
+                    <button onclick="showSignup()">Switch to Signup</button>
+                </div>
+                <div id="signupForm" style="display: none;">
+                    <h2>Sign Up</h2>
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required>
+                    </div>
+                    <button onclick="signup()">Sign Up</button>
+                    <button onclick="showLogin()">Switch to Login</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mainApp" style="display: none;">
+            <h1>Bank Loan Management System</h1>
+            <button onclick="logout()" class="logout-btn">Logout</button>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('application')">Loan Application</button>
+                <button class="tab" onclick="switchTab('calculator')">EMI Calculator</button>
+                <button class="tab" onclick="switchTab('management')">Loan Management</button>
+            </div>
+
+            <div id="applicationTab">
+                <div class="step-indicator">
+                    <div class="step active" id="step1">Application Form</div>
+                    <div class="step" id="step2">Review</div>
+                    <div class="step" id="step3">Submission</div>
+                </div>
+
+                <div id="applicationForm">
+                    <form id="loanForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Loan Amount ($)</label>
+                            <input type="number" id="amount" min="1000" max="100000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purpose">Loan Purpose</label>
+                            <select id="purpose" required>
+                                <option value="">Select purpose</option>
+                                <option value="personal">Personal</option>
+                                <option value="business">Business</option>
+                                <option value="education">Education</option>
+                                <option value="home">Home</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                          <!-- (heres the first part of the code, wait for the second part)-->
+                          <!-- Continue from previous HTML code -->
+                        </div>
+                        <button type="button" onclick="reviewApplication()">Review Application</button>
+                    </form>
+                </div>
+
+                <div id="reviewPage" style="display: none;">
+                    <h2>Review Your Application</h2>
+                    <div class="review-details" id="reviewDetails"></div>
+                    <div class="nav-buttons">
+                        <button onclick="backToApplication()">Back to Edit</button>
+                        <button onclick="submitLoan()">Confirm & Submit</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="calculatorTab" style="display: none;">
+                <div class="emi-calculator">
+                    <h2>EMI Calculator</h2>
+                    <div class="form-group">
+                        <label for="emiAmount">Loan Amount ($)</label>
+                        <input type="number" id="emiAmount" min="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emiTerm">Loan Term (months)</label>
+                        <input type="number" id="emiTerm" min="12" max="60" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emiRate">Interest Rate (% per year)</label>
+                        <input type="number" id="emiRate" min="1" max="20" step="0.1" required>
+                    </div>
+                    <button onclick="calculateEMI()">Calculate EMI</button>
+                    <div class="emi-result" id="emiResult"></div>
+                </div>
+            </div>
+
+            <div id="managementTab" style="display: none;">
+                <div class="loan-list">
+                    <h2>Your Loan Applications</h2>
+                    <table id="loanTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Amount</th>
+                                <th>Purpose</th>
+                                <th>Term</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="loanTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
